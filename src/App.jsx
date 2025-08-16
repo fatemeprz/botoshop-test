@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -12,7 +12,7 @@ function App() {
   return (
     <ProductProvider>
       <CartProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Layout>
             <Routes>
               <Route index element={<Navigate to="/products" replace />} />
@@ -24,7 +24,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
-        </BrowserRouter>
+        </HashRouter>
       </CartProvider>
     </ProductProvider>
   );
