@@ -1,7 +1,7 @@
 {
-  "name": "shopping-card-second",
+  "name": "botoshop-test",
   "homepage": "https://fatemeprz.github.io/botoshop-test",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-"deploy": "gh-pages -d build"
+"deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
