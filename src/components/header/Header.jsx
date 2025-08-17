@@ -1,6 +1,7 @@
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import logo from "../../assets/logo.png"
 
 function Header() {
   const [cart] = useCart();
@@ -8,7 +9,7 @@ function Header() {
   return (
     <header className="flex justify-between items-center   py-3 rounded-b-2xl px-10">
       <img
-        src="../../../src/assets/logo.png"
+        src={logo}
         className="w-32 rounded-4xl"
         alt="logo"
       />

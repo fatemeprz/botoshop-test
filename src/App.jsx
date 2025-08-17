@@ -12,7 +12,7 @@ function App() {
   return (
     <ProductProvider>
       <CartProvider>
-        <HashRouter>
+        <BrowserRouter>
           <Layout>
             <Routes>
               <Route index element={<Navigate to="/products" replace />} />
@@ -24,7 +24,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
-        </HashRouter>
+        </BrowserRouter>
       </CartProvider>
     </ProductProvider>
   );
