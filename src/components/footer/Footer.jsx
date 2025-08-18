@@ -2,6 +2,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { IoLogoSkype } from "react-icons/io5";
+import logo from "../../assets/logo.png"
 
 function Footer() {
   return (
@@ -22,7 +23,7 @@ function Footer() {
       <div className="text-neutral-100 overflow-x-auto z-40 px-10 pt-5 leading-5 items-start grid  xs:grid-cols-[0.9fr_minmax(80px,230px)] xs:justify-between gap-y-5 sm:gap-y-3 gap-x-5 grid-cols-1 place-items-baseline text-sm xl:leading-7 xl:flex  xl:justify-between absolute bottom-3 inset-x-0 ">
         <div className="xl:w-1/4">
           <img
-            src="../../../src/assets/logo.png"
+            src={logo}
             alt="logo"
             className="w-35 sm:w-40"
           />
