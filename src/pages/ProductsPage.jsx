@@ -14,18 +14,14 @@ import {
   setQueryObject,
 } from "../helpers/helper";
 import { useCart } from "../context/CartContext";
+import { TbShoppingBagSearch } from "react-icons/tb";
 
 function ProductsPage() {
-  const [ products ] = useProducts();
+  const [products] = useProducts();
   const [displayed, setDisplayed] = useState([]);
   const [query, setQuery] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const [cart] = useCart();
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+  const [isExist, setIsExist] = useState(true);
 
   useEffect(() => {
     setDisplayed(products.data);
@@ -38,6 +34,7 @@ function ProductsPage() {
       query.category,
       finalFilteredProducts
     );
+    if (!!finalFilteredProducts.length || !!displayed.length) setIsExist(false);
     setDisplayed(finalFilteredProducts);
     setSearchParams(query);
   }, [query]);
@@ -67,8 +64,15 @@ function ProductsPage() {
                 </li>
               ))}
             </ul>
-          ) : (
+          ) : isExist ? (
             <Loader />
+          ) : (
+            <div className="flex flex-col text-center items-center h-full justify-center">
+              <TbShoppingBagSearch className="w-full text-9xl mt-12 text-gray-700" />
+              <span className="mt-3 text-xl text-gray-700">
+                No Product Found
+              </span>
+            </div>
           )}
         </main>
         <aside className="lg:border h-fit lg:bg-white  lg:border-orange-600 rounded-2xl lg:px-5 py-4">
