@@ -1,5 +1,4 @@
 import {
-  BrowserRouter,
   HashRouter,
   Navigate,
   Route,
@@ -9,15 +8,14 @@ import ProductsPage from "./pages/ProductsPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import NotFound from "./pages/404";
-import ProductProvider from "./context/ProductContext";
-import CartProvider from "./context/CartContext";
 import Layout from "./layout/Layout";
 import PhotoModule from "./pages/PhotoModule";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 function App() {
   return (
-    <ProductProvider>
-      <CartProvider>
+    <Provider store={store}>
         <HashRouter>
           <Layout>
             <Routes>
@@ -31,8 +29,7 @@ function App() {
             </Routes>
           </Layout>
         </HashRouter>
-      </CartProvider>
-    </ProductProvider>
+    </Provider>
   );
 }
 

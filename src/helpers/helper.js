@@ -1,3 +1,8 @@
+const shorterName = (name) => {
+  const result = name.split(" ").splice(0, 4).join(" ");
+  return result;
+};
+
 const filterBySearch = (search, products) => {
   if (!search) return products;
   else {
@@ -39,24 +44,28 @@ const getInitialQuery = (searchParams) => {
 
   return query;
 };
-const sumProducts = (data) => {
-  const itemsCounter = data.reduce((acc, cur) => acc + cur.count, 0);
-  const total = data.reduce((acc, cur) => acc + cur.count * cur.price, 0).toFixed(2);
-  return { itemsCounter, total };
+const sumPrice = (data) => {
+  return data.reduce((acc, cur) => acc + cur.count * cur.price, 0).toFixed(2);
 };
- const getProductById=(id,data)=>{
-   const result= data.find(item=>item.id===+id)
-   return {...result}
-  }
-const addLocalStorage=(cart)=>{
-  localStorage.setItem("cart",JSON.stringify(cart))
-}
+const sumQuantity = (data) => {
+  return data.reduce((acc, cur) => acc + cur.count, 0);
+};
+const getProductById = (id, data) => {
+  const result = data.find((item) => item.id === +id);
+  return { ...result };
+};
+const addLocalStorage = (cart) => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
 export {
+  shorterName,
   filterBySearch,
   filterByCategory,
   setQueryObject,
   getInitialQuery,
-  sumProducts,
+  sumPrice,
+  sumQuantity,
   getProductById,
-  addLocalStorage
+  addLocalStorage,
 };

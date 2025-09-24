@@ -13,6 +13,6 @@ function Layout({ children }) {
     </>
   );
 }
-//bg-gradient-to-r from-white via-[#fef5ef] to-white
+
 
 export default Layout;

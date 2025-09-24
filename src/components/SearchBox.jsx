@@ -1,13 +1,10 @@
 import { IoIosSearch } from "react-icons/io";
-import { useProducts } from "../context/ProductContext";
 import { useEffect, useRef } from "react";
 import { setQueryObject } from "../helpers/helper";
+
+
 function SearchBox({ queries: { query, setQuery } }) {
-  const [
-    products,
-    dispatch,
-   ] = useProducts();
-   const {data}=products
+
   const searchInput = useRef(null);
 
   useEffect(() => {

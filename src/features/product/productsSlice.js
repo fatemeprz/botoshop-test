@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../../services/config";
 
 const initialState = {
   loading: false,
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
-  return axios.get("/products");
+  return api.get("/products");
 });
 
 const productsSlice = createSlice({

@@ -1,10 +1,12 @@
-import { shorterName } from "../helpers/ShorterName";
+import { shorterName } from "../helpers/helper";
 import { MdDeleteOutline } from "react-icons/md";
-import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { decrease, increase, removeItem } from "../features/cart/cartSlice";
 
 function BasketCard({ product }) {
-  const [cart, dispatch] = useCart();
+
+  const dispatch=useDispatch()
 
   return (
     <li
@@ -26,7 +28,7 @@ function BasketCard({ product }) {
             <span className="rounded-sm">
               <MdDeleteOutline
                 onClick={() => {
-                  dispatch({ type: "DELETE_ITEM", payload: product });
+                  dispatch(removeItem(product))
                 }}
                 className="bg-orange-600 h-7 text-white rounded-sm px-0.5 text-xl w-6.5 cursor-pointer hover:bg-orange-500"
               />
@@ -34,7 +36,7 @@ function BasketCard({ product }) {
           ) : (
             <span
               onClick={() => {
-                dispatch({ type: "DECREASE_ITEM", payload: product });
+                dispatch(decrease(product))
               }}
               className="bg-orange-600 w-6.5 px-1 text-white text-xl rounded-sm cursor-pointer hover:bg-orange-500 "
             >
@@ -45,7 +47,7 @@ function BasketCard({ product }) {
         <span className="mx-3">{product.count}</span>
         <span
           onClick={() => {
-            dispatch({ type: "INCREASE_ITEM", payload: product });
+            dispatch(increase(product))
           }}
           className="bg-orange-600 w-6.5 px-1 text-white text-xl rounded-sm cursor-pointer hover:bg-orange-500 transition "
         >

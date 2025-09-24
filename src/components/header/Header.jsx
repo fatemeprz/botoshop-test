@@ -1,13 +1,14 @@
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
 import logo from "../../assets/logo.png"
+import { useSelector } from "react-redux";
 
 function Header() {
-  const [cart] = useCart();
-  const { itemsCounter } = cart;
+
+  const itemsCounter=useSelector(store=>store.cart.itemsCounter)
+
   return (
-    <header className="flex justify-between items-center   py-3 rounded-b-2xl px-10">
+    <header className="flex justify-between items-center py-3 rounded-b-2xl px-10">
       <img
         src={logo}
         className="w-32 rounded-4xl"

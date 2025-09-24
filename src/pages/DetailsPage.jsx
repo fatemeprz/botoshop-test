@@ -1,25 +1,34 @@
 import { Outlet, useParams } from "react-router-dom";
-import { getProductById } from "../helpers/helper";
-import { useProductDetails, useProducts } from "../context/ProductContext";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdPricetag } from "react-icons/io";
 import { SiOpenproject } from "react-icons/si";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbArrowsMaximize } from "react-icons/tb";
 import Loader from "../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../features/product/productsSlice";
 
 function DetailsPage() {
   const { id } = useParams();
-  const data = useProductDetails(+id);
-  const { image, price, category, title, description } = data;
   const [isHovered, setIsHovered] = useState(false);
   const [isShowModule, setIsShowModule] = useState(false);
+  const dispatch = useDispatch();
+  const isLoading = useSelector((store) => store.products.isLoading);
+  const productsDetail = useSelector((store) =>
+    store.products.data.find((item) => item.id == +id)
+  );
+
+  const { image, price, category, title, description } = productsDetail || {};
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
   const scaleUpImage = () => {
     setIsShowModule(true);
   };
-  if (!data.id) return <Loader />;
+  if (isLoading || !productsDetail) return <Loader />;
   return (
     <>
       <div className="mt-15">

@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import { shorterName } from "../helpers/ShorterName";
+import { shorterName } from "../helpers/helper";
 import { TbListDetails } from "react-icons/tb";
 import { TbShoppingCartCheck } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, decrease, increase, removeItem } from "../features/cart/cartSlice";
 
 function Card({ data }) {
+  
   const { image, title, price, id } = data;
   const [isShow, setIsShow] = useState(true);
-  const [cart, dispatch] = useCart();
   const [counter, setCounter] = useState();
+  const dispatch=useDispatch()
+  const cart=useSelector(store=>store.cart)
 
   useEffect(() => {
     const index = cart.data.findIndex((item) => item.id === id);
@@ -22,17 +25,18 @@ function Card({ data }) {
 
   const addToCart = () => {
     setIsShow(false);
-    dispatch({ type: "ADD_ITEM", payload: { ...data, count: 1 } });
+    dispatch(addItem({ ...data, count: 1 }))
   };
   const increaseHandler = () => {
-    dispatch({ type: "INCREASE_ITEM", payload: data });
+    dispatch(increase(data))
   };
   const decreaseHandler = () => {
-    dispatch({ type: "DECREASE_ITEM", payload: data });
+    dispatch(decrease(data))
+
   };
   const deleteHandler = () => {
     setIsShow(true);
-    dispatch({ type: "DELETE_ITEM", payload: data });
+    dispatch(removeItem(data))
   };
 
   return (
