@@ -11,11 +11,14 @@ import NotFound from "./pages/404";
 import Layout from "./layout/Layout";
 import PhotoModule from "./pages/PhotoModule";
 import { Provider } from "react-redux";
-import { store } from "./app/store";
+import { persistor, store } from "./app/store";
+import { PersistGate } from "redux-persist/integration/react";
+import Loader from "./components/Loader";
 
 function App() {
   return (
     <Provider store={store}>
+      <PersistGate loading={<Loader/>} persistor={persistor}>
         <HashRouter>
           <Layout>
             <Routes>
@@ -29,6 +32,7 @@ function App() {
             </Routes>
           </Layout>
         </HashRouter>
+        </PersistGate>
     </Provider>
   );
 }

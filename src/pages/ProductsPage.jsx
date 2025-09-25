@@ -35,12 +35,13 @@ function ProductsPage() {
   }, [data]);
 
   useEffect(() => {
+    
     let finalFilteredProducts = filterBySearch(query.search, data);
     finalFilteredProducts = filterByCategory(
       query.category,
       finalFilteredProducts
     );
-    if (!!finalFilteredProducts.length || !!displayed.length) setIsExist(false);
+    if (!!finalFilteredProducts.length || displayed.length) setIsExist(false);
     setDisplayed(finalFilteredProducts);
     setSearchParams(query);
   }, [query]);
@@ -59,7 +60,7 @@ function ProductsPage() {
       <SearchBox queries={{ query, setQuery }} />
       <div className=" flex flex-col-reverse justify-start lg:flex-row lg:justify-between">
         <main className="lg:w-3/4">
-          {!!displayed.length && !isLoading ? (
+          {displayed.length && !isLoading ? (
             <ul className="grid grid-cols-[repeat(auto-fill,minmax(230px,0.7fr))] justify-center auto-rows-fr gap-8 gap-x-12 ">
               {displayed.map((product) => (
                 <li
